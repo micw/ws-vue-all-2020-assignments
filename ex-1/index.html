@@ -26,10 +26,10 @@
    Each time the user clicks the heart button the number of reaction increases by one
   -->
               <div class="article-likes__description">
-                <span id="article-likes__number">0</span>
+                <span id="article-likes__number">{{ numberOfLikes }}</span>
                   reactions
               </div>
-              <button class="button button--red">
+              <button class="button button--red" v-on:click="doLike">
                 <span class="article-likes__heart">&#10084;</span>
               </button>
             </div>
@@ -41,10 +41,10 @@
    Each time the user clicks the donation button she donates 5 euro
    Note: please apply method with an argument
   -->
-                <span id="article-likes__number">0€</span>
+                <span id="article-likes__number">{{ sumOfDonations }} €</span>
                   donated
               </div>
-              <button class="button button--green">
+              <button class="button button--green" v-on:click="doDonate">
                 <span >donate 5€</span>
               </button>
             </div>
