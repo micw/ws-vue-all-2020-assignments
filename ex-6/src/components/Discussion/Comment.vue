@@ -9,7 +9,18 @@
 
 <script>
 export default {
-  props: ['comment'],
+  props: {
+    comment: {
+      type: Object,
+      default: function() {
+        return {
+          commentText: 'your Comment Here',
+          commentAuthor: 'someone',
+          setTextColor: false,
+        }
+      }
+    }
+  },
   data() {
     return {
       date: new Date()
