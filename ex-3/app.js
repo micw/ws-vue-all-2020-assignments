@@ -10,7 +10,18 @@ const app = Vue.createApp({
       commentTemporary: {
         commentAuthor: 'Joe',
         commentText: 'Do commanded an shameless we disposing do. Indulgence ten remarkably nor are impression out. Power is lived means oh every in we quiet. Remainder provision an in intention. Saw supported too joy promotion engrossed propriety. Me till like it sure no sons.'
-      }
+      },
+      theEndIsNear: false,
+    }
+  },
+  computed: {
+    isStarRated() {
+      return this.likesNumber >= 10
+    }
+  },
+  watch: {
+    comment(newComment,oldComment) {
+      this.theEndIsNear=(newComment.commentAuthor==="Donald")
     }
   },
   methods: {

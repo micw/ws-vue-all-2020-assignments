@@ -19,7 +19,7 @@
    If the number of likes reaches 10, add the star to the title
    Notes: star hex code ist &#9733;
   -->
-        <h2 class="article__title"><span class="star"><!--The star must be here--></span> Effects present letters</h2>
+        <h2 class="article__title"><span class="star" v-if="isStarRated">&#9733</span> Effects present letters</h2>
         <div class="article__snippet">
           Effects present letters inquiry no an removed or friends. Desire behind latter me though in. Supposing shameless am he engrossed up additions. My possible peculiar together to. Desire so better am cannot he up before points. Remember mistaken opinions it pleasure of debating. Court front maids forty if aware their at. Chicken use are pressed removed.
 
@@ -61,9 +61,9 @@
   -->
 
   <!--BEGIN: Alert -->
-    <section class="block block-alert">
+    <section class="block block-alert" v-if="theEndIsNear">
       <div class="alert_body">
-        <!-- Alert message for Donald -->
+        Hit the road, Donald!
       </div>
     </section>
   <!--END: Alert -->
@@ -72,7 +72,7 @@
     <section class="block discussion">
       <div class="discussion__body">
         <h3 class="discussion__title"> Discussion </h3>
-        <div class="discussion__comment" :class="{'text-color--red': setTextColor}">
+        <div class="discussion__comment" :class="{'text-color--red': theEndIsNear}">
           {{comment.commentText}}
         </div>
         <div class="discussion__details">
