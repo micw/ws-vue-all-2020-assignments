@@ -3,13 +3,18 @@
     {{comment.commentText}}
   </div>
   <div class="discussion__details">
-    <div class="author">{{comment.commentAuthor}}</div>
+    <div class="author">{{comment.commentAuthor}} @ {{ date }}</div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['comment']
+  props: ['comment'],
+  data() {
+    return {
+      date: new Date()
+    }
+  }
 }
 </script>
 
