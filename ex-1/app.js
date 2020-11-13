@@ -6,10 +6,10 @@ const app = Vue.createApp({
     }
   },
   methods: {
-    doLike: function() {
+    doLike() {
       this.numberOfLikes++;
     },
-    doDonate: function() {
+    doDonate() {
       this.sumOfDonations+=5;
     }
   }
