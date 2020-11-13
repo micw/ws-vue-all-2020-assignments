@@ -8,14 +8,9 @@
     <section class="block discussion">
       <div class="discussion__body">
         <h3 class="discussion__title"> Discussion </h3>
-          <div class="discussion__comment" :class="{'text-color--red': setTextColor}">
-            {{comment.commentText}}
-          </div>
-          <div class="discussion__details">
-            <div class="author">{{comment.commentAuthor}}</div>
-          </div>
+        <comment v-for="comment in comments" :key="comment" :comment="comment"></comment>
         <div class="discussion__form">
-          <comment-form @send="addComment" @setText="setCommentText" @setAuthor="setCommentAuthor" />
+          <comment-form @send="addComment" />
         </div>
       </div>
     </section>
@@ -24,51 +19,42 @@
 
 <script>
 import CommentForm from './Discussion/CommentForm.vue';
+import Comment from './Discussion/Comment.vue';
 
 export default {
 name: 'Discussion',
 components: {
-  'comment-form': CommentForm
+  'comment-form': CommentForm,
+  'comment': Comment,
 },
 data () {
   return {
-      comment: {
-        commentAuthor: 'Donald',
-        commentText: 'Do commanded an shameless we disposing do. Indulgence ten remarkably nor are impression out. Power is lived means oh every in we quiet. Remainder provision an in intention. Saw supported too joy promotion engrossed propriety. Me till like it sure no sons.'
-      },
-      commentTemporary: {
-        commentAuthor: 'Joe',
-        commentText: 'Do commanded an shameless we disposing do. Indulgence ten remarkably nor are impression out. Power is lived means oh every in we quiet. Remainder provision an in intention. Saw supported too joy promotion engrossed propriety. Me till like it sure no sons.'
-      },
+      comments: [ {
+          commentAuthor: 'Donald',
+          commentText: 'Do commanded an shameless we disposing do. Indulgence ten remarkably nor are impression out. Power is lived means oh every in we quiet. Remainder provision an in intention. Saw supported too joy promotion engrossed propriety. Me till like it sure no sons.',
+          setTextColor: true,
+        }
+      ],
       alert: '',
       setTextColor: false
   }
 },
 methods: {
-  setCommentText (value) {
-    this.commentTemporary.commentText = value
-  },
-  setCommentAuthor (value) {
-    this.commentTemporary.commentAuthor = value
-  },
- addComment() {
-    this.comment = {
-      commentAuthor: this.commentTemporary.commentAuthor,
-      commentText: this.commentTemporary.commentText
+ addComment(c) {
+      var comment={
+        commentAuthor: c.author,
+        commentText: c.text
+      }
+      if (c.author === 'Donald') {
+        comment.setTextColor = true
+        this.alert = 'Hit the road, Donald!'
+      } else {
+        comment.setTextColor = false
+        this.alert = ''
+      }
+      this.comments.push(comment)
     }
   }
-},
-watch: {
-  comment (value) {
-    if (value.commentAuthor === 'Donald') {
-      this.setTextColor = true
-      this.alert = 'Hit the road, Donald!'
-    } else {
-      this.setTextColor = false
-      this.alert = ''
-    }
-  }
-},
 }
 </script>
 
