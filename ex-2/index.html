@@ -51,22 +51,24 @@
     <section class="block discussion">
       <div class="discussion__body">
         <h3 class="discussion__title"> Discussion </h3>
+        <div  v-for="comment in comments">
         <div class="discussion__comment">
-          Do commanded an shameless we disposing do. Indulgence ten remarkably nor are impression out. Power is lived means oh every in we quiet. Remainder provision an in intention. Saw supported too joy promotion engrossed propriety. Me till like it sure no sons.
+          {{ comment.text }}
         </div>
         <div class="discussion__details">
-          <div class="author">Donald</div>
+          <div class="author">{{ comment.author }}</div>
+        </div>
         </div>
       <div class="discussion__form">
-        <form class="discussion__form__fields">
+        <form class="discussion__form__fields" @submit.prevent="postComment">
           <div class="form-el">
             <label for="comment">Comment</label>
-            <textarea name="comment" id="comment" cols="50" rows="5">
+            <textarea name="comment" id="comment" cols="50" rows="5" v-model="formText">
             </textarea>
           </div>
           <div class="form-el">
             <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="input-name">
+            <input type="text" name="name" id="name" class="input-name" v-model="formAuthor">
           </div>
           <button class="button button--black form-el">send</button>
         </form>
